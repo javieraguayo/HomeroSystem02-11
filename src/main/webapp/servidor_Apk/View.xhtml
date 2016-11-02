@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewServidor_ApkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewServidor_ApkLabel_id_serv_apk}"/>
+                    <h:outputText value="#{servidor_ApkController.selected.id_serv_apk}" title="#{bundle.ViewServidor_ApkTitle_id_serv_apk}"/>
+                    <h:outputText value="#{bundle.ViewServidor_ApkLabel_nombre}"/>
+                    <h:outputText value="#{servidor_ApkController.selected.nombre}" title="#{bundle.ViewServidor_ApkTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewServidor_ApkLabel_motor}"/>
+                    <h:outputText value="#{servidor_ApkController.selected.motor}" title="#{bundle.ViewServidor_ApkTitle_motor}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{servidor_ApkController.destroyAndView}" value="#{bundle.ViewServidor_ApkDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewServidor_ApkEditLink}"/>
+                <br />
+                <h:commandLink action="#{servidor_ApkController.prepareCreate}" value="#{bundle.ViewServidor_ApkCreateLink}" />
+                <br />
+                <h:commandLink action="#{servidor_ApkController.prepareList}" value="#{bundle.ViewServidor_ApkShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewServidor_ApkIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

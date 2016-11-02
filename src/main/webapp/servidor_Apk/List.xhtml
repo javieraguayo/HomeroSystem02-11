@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListServidor_ApkTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListServidor_ApkEmpty}" rendered="#{servidor_ApkController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{servidor_ApkController.items.rowCount > 0}">
+                    <h:outputText value="#{servidor_ApkController.pagination.pageFirstItem + 1}..#{servidor_ApkController.pagination.pageLastItem + 1}/#{servidor_ApkController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{servidor_ApkController.previous}" value="#{bundle.Previous} #{servidor_ApkController.pagination.pageSize}" rendered="#{servidor_ApkController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{servidor_ApkController.next}" value="#{bundle.Next} #{servidor_ApkController.pagination.pageSize}" rendered="#{servidor_ApkController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{servidor_ApkController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServidor_ApkTitle_id_serv_apk}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id_serv_apk}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServidor_ApkTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServidor_ApkTitle_motor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.motor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{servidor_ApkController.prepareView}" value="#{bundle.ListServidor_ApkViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{servidor_ApkController.prepareEdit}" value="#{bundle.ListServidor_ApkEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{servidor_ApkController.destroy}" value="#{bundle.ListServidor_ApkDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{servidor_ApkController.prepareCreate}" value="#{bundle.ListServidor_ApkCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListServidor_ApkIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
