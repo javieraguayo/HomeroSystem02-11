@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewServidorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewServidorLabel_id_servidor}"/>
+                    <h:outputText value="#{servidorController.selected.id_servidor}" title="#{bundle.ViewServidorTitle_id_servidor}"/>
+                    <h:outputText value="#{bundle.ViewServidorLabel_proveedor}"/>
+                    <h:outputText value="#{servidorController.selected.proveedor}" title="#{bundle.ViewServidorTitle_proveedor}"/>
+                    <h:outputText value="#{bundle.ViewServidorLabel_nombre}"/>
+                    <h:outputText value="#{servidorController.selected.nombre}" title="#{bundle.ViewServidorTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewServidorLabel_hdd}"/>
+                    <h:outputText value="#{servidorController.selected.hdd}" title="#{bundle.ViewServidorTitle_hdd}"/>
+                    <h:outputText value="#{bundle.ViewServidorLabel_ram}"/>
+                    <h:outputText value="#{servidorController.selected.ram}" title="#{bundle.ViewServidorTitle_ram}"/>
+                    <h:outputText value="#{bundle.ViewServidorLabel_garantia}"/>
+                    <h:outputText value="#{servidorController.selected.garantia}" title="#{bundle.ViewServidorTitle_garantia}"/>
+                    <h:outputText value="#{bundle.ViewServidorLabel_ip}"/>
+                    <h:outputText value="#{servidorController.selected.ip}" title="#{bundle.ViewServidorTitle_ip}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{servidorController.destroyAndView}" value="#{bundle.ViewServidorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewServidorEditLink}"/>
+                <br />
+                <h:commandLink action="#{servidorController.prepareCreate}" value="#{bundle.ViewServidorCreateLink}" />
+                <br />
+                <h:commandLink action="#{servidorController.prepareList}" value="#{bundle.ViewServidorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewServidorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

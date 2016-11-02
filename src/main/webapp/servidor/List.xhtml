@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListServidorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListServidorEmpty}" rendered="#{servidorController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{servidorController.items.rowCount > 0}">
+                    <h:outputText value="#{servidorController.pagination.pageFirstItem + 1}..#{servidorController.pagination.pageLastItem + 1}/#{servidorController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{servidorController.previous}" value="#{bundle.Previous} #{servidorController.pagination.pageSize}" rendered="#{servidorController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{servidorController.next}" value="#{bundle.Next} #{servidorController.pagination.pageSize}" rendered="#{servidorController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{servidorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServidorTitle_id_servidor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id_servidor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServidorTitle_proveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proveedor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServidorTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServidorTitle_hdd}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hdd}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServidorTitle_ram}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ram}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServidorTitle_garantia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.garantia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListServidorTitle_ip}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ip}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{servidorController.prepareView}" value="#{bundle.ListServidorViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{servidorController.prepareEdit}" value="#{bundle.ListServidorEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{servidorController.destroy}" value="#{bundle.ListServidorDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{servidorController.prepareCreate}" value="#{bundle.ListServidorCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListServidorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateServidorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateServidorLabel_id_servidor}" for="id_servidor" />
+                    <h:inputText id="id_servidor" value="#{servidorController.selected.id_servidor}" title="#{bundle.CreateServidorTitle_id_servidor}" />
+                    <h:outputLabel value="#{bundle.CreateServidorLabel_proveedor}" for="proveedor" />
+                    <h:selectOneMenu id="proveedor" value="#{servidorController.selected.proveedor}" title="#{bundle.CreateServidorTitle_proveedor}" >
+                        <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateServidorLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{servidorController.selected.nombre}" title="#{bundle.CreateServidorTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateServidorLabel_hdd}" for="hdd" />
+                    <h:inputText id="hdd" value="#{servidorController.selected.hdd}" title="#{bundle.CreateServidorTitle_hdd}" />
+                    <h:outputLabel value="#{bundle.CreateServidorLabel_ram}" for="ram" />
+                    <h:inputText id="ram" value="#{servidorController.selected.ram}" title="#{bundle.CreateServidorTitle_ram}" />
+                    <h:outputLabel value="#{bundle.CreateServidorLabel_garantia}" for="garantia" />
+                    <h:inputText id="garantia" value="#{servidorController.selected.garantia}" title="#{bundle.CreateServidorTitle_garantia}" />
+                    <h:outputLabel value="#{bundle.CreateServidorLabel_ip}" for="ip" />
+                    <h:inputText id="ip" value="#{servidorController.selected.ip}" title="#{bundle.CreateServidorTitle_ip}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{servidorController.create}" value="#{bundle.CreateServidorSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{servidorController.prepareList}" value="#{bundle.CreateServidorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateServidorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
