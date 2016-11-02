@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSistemaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSistemaLabel_id_sistema}" for="id_sistema" />
+                    <h:inputText id="id_sistema" value="#{sistemaController.selected.id_sistema}" title="#{bundle.CreateSistemaTitle_id_sistema}" />
+                    <h:outputLabel value="#{bundle.CreateSistemaLabel_servidor_Apk}" for="servidor_Apk" />
+                    <h:selectOneMenu id="servidor_Apk" value="#{sistemaController.selected.servidor_Apk}" title="#{bundle.CreateSistemaTitle_servidor_Apk}" >
+                        <f:selectItems value="#{servidor_ApkController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSistemaLabel_servidor}" for="servidor" />
+                    <h:selectOneMenu id="servidor" value="#{sistemaController.selected.servidor}" title="#{bundle.CreateSistemaTitle_servidor}" >
+                        <f:selectItems value="#{servidorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSistemaLabel_base_datos}" for="base_datos" />
+                    <h:selectOneMenu id="base_datos" value="#{sistemaController.selected.base_datos}" title="#{bundle.CreateSistemaTitle_base_datos}" >
+                        <f:selectItems value="#{base_DatosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSistemaLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{sistemaController.selected.nombre}" title="#{bundle.CreateSistemaTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateSistemaLabel_version}" for="version" />
+                    <h:inputText id="version" value="#{sistemaController.selected.version}" title="#{bundle.CreateSistemaTitle_version}" />
+                    <h:outputLabel value="#{bundle.CreateSistemaLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{sistemaController.selected.descripcion}" title="#{bundle.CreateSistemaTitle_descripcion}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sistemaController.create}" value="#{bundle.CreateSistemaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{sistemaController.prepareList}" value="#{bundle.CreateSistemaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSistemaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
